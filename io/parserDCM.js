@@ -76,8 +76,12 @@ X.parserDCM.prototype.parse = function(container, object, data, flag) {
   
   var _data = data;
   
+  window.console.log('before parsestream');
+  
   // parse the byte stream
   var MRI = this.parseStream(_data, object);
+  
+  window.console.log('after parsestream');
   
   // X.TIMERSTOP(this._classname + '.parse');
   
@@ -201,8 +205,10 @@ X.parserDCM.prototype.parseStream = function(data, object) {
       
     }
     
+    window.console.log('before scan');
     // scan the whole file as short (2 bytes)
     var _bytes = this.scan('ushort', this._data.byteLength);
+    window.console.log('after scan');
     
     var _bytePointer = 66; // skip the 132 byte preamble
     

@@ -216,6 +216,8 @@ X.loader.prototype.load = function(container, object) {
     
   }
   
+  window.console.log('creating xml request');
+  
   // we use a simple XHR to get the file contents
   // this works for binary and for ascii files
   var request = new XMLHttpRequest();
@@ -254,6 +256,8 @@ X.loader.prototype.load = function(container, object) {
  */
 X.loader.prototype.parse = function(request, container, object) {
 
+  window.console.log('parse now');
+  
   // downloading completed, add progress
   this.addProgress(1.0);
   
@@ -267,8 +271,12 @@ X.loader.prototype.parse = function(request, container, object) {
     var parser = _checkresult[2]; // the (uninstantiated) parser
     var flags = _checkresult[3]; // some (optional) custom flags
     
+    window.console.log('new parser');
+    
     // instantiate the parser
     var _parser = new parser;
+    
+    window.console.log('parser created');
     
     // listen once to a modified event
     goog.events.listenOnce(_parser, X.event.events.MODIFIED, this.complete
@@ -283,10 +291,15 @@ X.loader.prototype.parse = function(request, container, object) {
       
     }
     
+    window.console.log('starting to parse');
+    
     // call the parse function and pass in the container, the object and the
     // data stream and some additional value
     _parser.parse(container, object, _data, flags);
     
+    window.console.log('after parse')
+
+
   }.bind(this), 100);
   
 };

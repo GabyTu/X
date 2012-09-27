@@ -219,8 +219,11 @@ X.parser.prototype.scan = function(type, chunks) {
     break;
   }
   // increase the data pointer in-place
-  var _bytes = new _array_type(this._data.slice(this._dataPointer,
+  // var abcdef = new Uint16Array();
+  window.console.log('new array type' + _array_type)
+  var _bytes = new Uint16Array(this._data.slice(this._dataPointer,
       this._dataPointer += chunks * _chunkSize));
+  window.console.log('after array type');
   // if required, flip the endianness of the bytes
   if (this._nativeLittleEndian != this._littleEndian) {
     // we need to flip here since the format doesn't match the native endianness
